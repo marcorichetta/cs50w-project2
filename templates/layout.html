@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- BOOTSTRAP CSS -->
+        <link rel="stylesheet" type="text/css" media="screen" href="../static/bootstrap.min.css" />
+        <!-- MY CSS -->
+        <link rel="stylesheet" href="../static/style.css">
+        <!-- BOOTSTRAP JS -->
+        <script src="../static/bootstrap.min.js"></script>
+
+        <title>Project 2: {% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-light bg-light border justify-content-center">
+            <a class="navbar-brand" href="#">
+                <img src="../static/Slack_Logo.png" width="60" height="60" alt="Flack">
+            </a>
+        </nav>
+    </body>
+
+    <main class="container p-5">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</html>
