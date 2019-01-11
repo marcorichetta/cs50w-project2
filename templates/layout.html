@@ -17,10 +17,14 @@
         <!-- BOOTSTRAP JS (Last) -->
         <script src="../static/bootstrap.bundle.min.js"></script>
         
+        <!-- Socket IO JS-->
+        <script src="../static/socket.io.min.js"></script>
+        
         <title>Project 2: {% block title %}{% endblock %}</title>
     </head>
 
     <body>
+      {% if session.username %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light border">
                     <a class="navbar-brand" href="#">
                         <img src="../static/Slack_Logo.png" width="60" height="60" alt="Flack">
@@ -29,35 +33,26 @@
                       <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    {% if session.username %}
                       <ul class="navbar-nav">
                         <li class="nav-item active">
-                          <a class="nav-link" href="#">Channels</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Pricing</a>
+                          <a class="nav-link" href="#"> + Channel</a>
                         </li>
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown link
+                            Channels
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="#">Create</a>
                           </div>
                         </li>
                       </ul>
-                    {% else %}
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>                
-                            <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-                        </ul>
-                    {% endif %}
                     </div>
+                    {% else %}
+                      <nav class="navbar navbar-expand-lg navbar-light bg-light border justify-content-center">
+                        <a class="navbar-brand" href="#">
+                            <img src="../static/Slack_Logo.png" width="60" height="60" alt="Flack">
+                        </a>
+                    {% endif %}
                   </nav>
     </body>
 

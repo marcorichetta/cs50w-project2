@@ -20,7 +20,8 @@ def signin():
     if request.method == "POST":
         username = request.form.get("username")
 
-        session["username"] = username
+        print(username)
+        session['username'] = username
 
         redirect("/")
 
