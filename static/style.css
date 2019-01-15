@@ -26,26 +26,9 @@ body .navbar
 {
     padding: 0;
 }
-.card-body {
-    text-align: start;
-}
 
-.results-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: baseline;
-}
-
-.book-container {
-    display: flex;
-    justify-content: center;
-}
-
-.form-border {
-    border-color: #ECDB88;
-    border-style: solid;
-    border-radius: 1rem;
-    padding: 0.5rem;
+.container-channel {
+    display: grid;
+    grid-template-columns: 150px auto 100px;
+    grid-template-rows: 25rem 100px;
 }

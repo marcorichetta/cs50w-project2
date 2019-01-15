@@ -6,15 +6,8 @@
 
 {% block content %}
     
-    <h1 id=header></h1>
-    <h2>{{ session.username }}</h2>
-    
-    <form action="/create" method="POST">
-        <div class="form-group">
-            <input type="text" class="form-control" id="channel" name="channel" autofocus aria-describedby="userHelp">
-        </div>
-        <button class="btn btn-primary" type="submit">Create channel</button>
-    </form>
+    <h1>{{ session.username }}</h1>
+
 <!--    <script type="text/javascript">
         
         // Check for local storage
