@@ -8,15 +8,14 @@
     
     <h1 id=header></h1>
     <h2>{{ session.username }}</h2>
-    <h3>{{ session.variable }}</h3>
     
     <form action="/create" method="POST">
         <div class="form-group">
             <input type="text" class="form-control" id="channel" name="channel" autofocus aria-describedby="userHelp">
         </div>
-        <button class="btn btn-primary" type="submit">Create</button>
+        <button class="btn btn-primary" type="submit">Create channel</button>
     </form>
-    <script type="text/javascript">
+<!--    <script type="text/javascript">
         
         // Check for local storage
         if (!localStorage.getItem('username'))
@@ -24,7 +23,8 @@
         
         document.getElementById('header').innerText = localStorage.getItem('username')
 
-    </script>
+  </script>
+-->
 
 
 {% endblock %}
