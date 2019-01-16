@@ -56,7 +56,6 @@ def create():
         channelsCreated.append(newChannel)
 
         return redirect("/channels/" + newChannel)
-        #return render_template("index.html", channels = channelsCreated)
     
     else:
 
@@ -71,4 +70,4 @@ def channel(channel):
         
         return redirect("/")
     else:
-        return render_template("channel.html")
+        return render_template("channel.html", channels= channelsCreated)

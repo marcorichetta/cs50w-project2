@@ -29,6 +29,11 @@ body .navbar
 
 .container-channel {
     display: grid;
-    grid-template-columns: 150px auto 100px;
+    grid-template-columns: auto 150px;
     grid-template-rows: 25rem 100px;
+}
+
+#message-box {
+    align-self: center;
+    margin: 20px;
 }
