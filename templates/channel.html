@@ -6,9 +6,16 @@
 
 {% block content %}
     <div class="container-channel">
-        <div id="chat">
-            
-        </div>
+            <div id="chat" class="list-group">
+                <a class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1" style="color:burlywood">Rich said...</h6>
+                        <small>11:30</small>
+                    </div>
+                    <p class="mb-1">hola mark</p>
+                </a>
+                <div class="dropdown-divider"></div>
+            </div>
         
         <div id="users">Users connected</div>
 
@@ -26,6 +33,8 @@
                 </div>
             </form>
         </div>
-        <div id="File">Add file</div>
+        <div id="file-selector">
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
     </div>
 {% endblock %}

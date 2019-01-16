@@ -33,7 +33,11 @@ body .navbar
     grid-template-rows: 25rem 100px;
 }
 
-#message-box {
+
+#message-box, #file-selector {
     align-self: center;
-    margin: 20px;
+}
+
+#message-box {
+    margin: 30px 20px 10px 30px;
 }
