@@ -11,6 +11,7 @@ socketio = SocketIO(app)
 
 # Keep track of channels created
 channelsCreated = []
+usersLogged = []
 
 @app.route("/")
 @login_required
@@ -29,7 +30,12 @@ def signin():
     username = request.form.get("username")
     
     if request.method == "POST":
+
+        if username in usersLogged:
+            return render_template("error.html", message="that username already exists!")                   
         
+        usersLogged.append(username)
+
         session["username"] = username
 
         # Remember the user session on a cookie if the browser is closed.

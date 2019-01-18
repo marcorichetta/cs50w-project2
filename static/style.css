@@ -28,9 +28,15 @@ main .form-control
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
+.custom-window {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 15px;
+    padding: 30px;
+}
+
 .container-channel {
     display: grid;
-    grid-template-columns: auto 150px;
+    grid-template-columns: auto 250px;
     grid-template-rows: 25rem 100px;
 }
 
