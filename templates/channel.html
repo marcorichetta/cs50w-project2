@@ -9,10 +9,12 @@
             <div id="chat" class="list-group">
                 <a class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1" style="color:burlywood">Rich said...</h6>
+                        <h6 class="mb-1" style="color:burlywood">{{ session.username }}</h6>
+                        <ul id="messages">
+                            <li class="mb-1">hola mark</li>
+                        </ul>
                         <small>11:30</small>
                     </div>
-                    <p class="mb-1">hola mark</p>
                 </a>
                 <div class="dropdown-divider"></div>
             </div>
@@ -28,7 +30,7 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-2">
-                        <button class="btn btn-success" type="submit">Send</button>
+                        <button id="send-button" class="btn btn-success" type="button" >Send</button>
                     </div>
                 </div>
             </form>

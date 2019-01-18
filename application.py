@@ -71,3 +71,10 @@ def channel(channel):
         return redirect("/")
     else:
         return render_template("channel.html", channels= channelsCreated)
+
+@socketio.on("send message")
+def send(data):
+    """ Receive message and broadcast to all the users connected """ 
+    # TODO: Socketio rooms
+    msg = data['data']
+    emit("announce message", {"msg": msg}, broadcast=True)
