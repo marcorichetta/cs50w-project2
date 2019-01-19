@@ -9,8 +9,10 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "my secret key"
 socketio = SocketIO(app)
 
-# Keep track of channels created
+# Keep track of channels created (Check for channel name)
 channelsCreated = []
+
+# Keep track of users logged (Check for username)
 usersLogged = []
 
 @app.route("/")
@@ -45,6 +47,18 @@ def signin():
     else:
         return render_template("signin.html")
 
+@app.route("/logout/<username>", methods=['GET'])
+def logout(username):
+    """ Logout user deleting session and popping out of users connected."""
+
+    # Delete cookie
+    session.pop("username", None)
+
+    # Remove from list
+    usersLogged.remove(username)
+
+    return redirect("/")
+
 @app.route("/create", methods=['GET','POST'])
 def create():
 
@@ -76,7 +90,7 @@ def channel(channel):
         
         return redirect("/")
     else:
-        return render_template("channel.html", channels= channelsCreated)
+        return render_template("channel.html", channels= channelsCreated, users=usersLogged)
 
 @socketio.on("send message")
 def send(data):
