@@ -6,10 +6,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // When connected, configure button
     socket.on('connect', () => {
 
+        // 'Enter' key on textarea also sends a message
+        // https://developer.mozilla.org/en-US/docs/Web/Events/keydown
+        document.querySelector('#comment').addEventListener("keydown", event => {
+            if (event.code == "Enter") {
+                document.getElementById("send-button").click();
+            }
+        });
+        
         // Send button should emit a "message sent" event
         document.querySelector('#send-button').addEventListener("click", () => {
-            const data = 'hi';
+            const data = document.getElementById("comment").value;
             socket.emit('send message', {'data': data});
+            
+            // Clear textarea
+            document.getElementById("comment").value = '';
         });
     });
     
