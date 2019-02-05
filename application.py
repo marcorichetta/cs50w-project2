@@ -101,7 +101,7 @@ def joined(message):
     # TODO: Fix namespaces
 
     username = session['username']
-    room = session['current_channel']
+    room = session["current_channel"]
     join_room(room)
     emit('status', {'msg': username + ' has entered the channel.'}, room=room)
 

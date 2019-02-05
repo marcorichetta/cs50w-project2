@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // When user joins a channel, add it as a message.
+    // When user joins a channel, add a message.
     socket.on('status', data => {
         console.log(data);
         const li = document.createElement('li');
