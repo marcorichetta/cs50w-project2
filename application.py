@@ -38,7 +38,7 @@ def signin():
         
         usersLogged.append(username)
 
-        session["username"] = username
+        session['username'] = username
 
         # Remember the user session on a cookie if the browser is closed.
         session.permanent = True
@@ -47,18 +47,18 @@ def signin():
     else:
         return render_template("signin.html")
 
-@app.route("/logout/<username>", methods=['GET'])
-def logout(username):
-    """ Logout user deleting session and popping out of users connected."""
-
-    # Delete cookie
-    session.pop("username", None)
+@app.route("/logout", methods=['GET'])
+def logout():
+    """ Logout user from list and delete cookie."""
 
     # Remove from list
     try:
-        usersLogged.remove(username)
+        usersLogged.remove(session['username'])
     except ValueError:
         pass
+
+    # Delete cookie
+    session.clear()
 
     return redirect("/")
 
