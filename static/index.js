@@ -24,10 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // When a message is announced, add it to the DOM
-    socket.on('announce message', msg => {
+    // When user joins a channel, add it as a message.
+    socket.on('status', data => {
+        console.log(data);
         const li = document.createElement('li');
-        li.innerHTML = `New message: ${msg.msg}`;
+        li.innerHTML = `${data.msg}`;
+        document.querySelector('#messages').append(li);
+    })
+
+    // When a message is announced, add it to the DOM
+    socket.on('announce message', data => {
+        const li = document.createElement('li');
+        li.innerHTML = `New message: ${data.msg}`;
         document.querySelector('#messages').append(li)
     })
 });

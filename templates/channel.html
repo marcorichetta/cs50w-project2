@@ -48,4 +48,18 @@
             <input type="file" class="form-control-file" id="exampleFormControlFile1">
         </div>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Connect to websocket
+        var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+
+        socket.on('connect', () => {
+            socket.emit('joined', {})
+        })
+
+    });
+    </script>
+
 {% endblock %}

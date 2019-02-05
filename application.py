@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, render_template, session, request, redirect
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, send, emit, join_room, leave_room
 
 from helpers import login_required
 
@@ -55,7 +55,10 @@ def logout(username):
     session.pop("username", None)
 
     # Remove from list
-    usersLogged.remove(username)
+    try:
+        usersLogged.remove(username)
+    except ValueError:
+        pass
 
     return redirect("/")
 
@@ -92,9 +95,18 @@ def channel(channel):
     else:
         return render_template("channel.html", channels= channelsCreated, users=usersLogged)
 
+@socketio.on("joined", namespace='/')
+def joined(message):
+    """ Broadcast a message to anounce that a user has joined the channel """
+    # TODO: Fix namespaces
+
+    username = session['username']
+    room = session['current_channel']
+    join_room(room)
+    emit('status', {'msg': username + ' has entered the channel.'}, room=room)
+
 @socketio.on("send message")
-def send(data):
+def send_msg(data):
     """ Receive message and broadcast to all the users connected """ 
-    # TODO: Socketio rooms
     msg = data['data']
     emit("announce message", {"msg": msg}, broadcast=True)
