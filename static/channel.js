@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // When connected, configure button
     socket.on('connect', () => {
 
+        socket.emit('joined', {})
+
         // 'Enter' key on textarea also sends a message
         // https://developer.mozilla.org/en-US/docs/Web/Events/keydown
         document.querySelector('#comment').addEventListener("keydown", event => {
@@ -24,12 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // When user joins a channel, add a message.
+    // When user joins a channel, add a message and on users connected.
     socket.on('status', data => {
-        console.log(data);
         const li = document.createElement('li');
         li.innerHTML = `${data.msg}`;
         document.querySelector('#messages').append(li);
+
+        const newUser = document.createElement('li');
+        newUser.innerHTML = `${data.userJoined}`;
+        newUser.className = 'list-group-item';
+        document.querySelector('#currentUsers').append(newUser);
     })
 
     // When a message is announced, add it to the DOM
