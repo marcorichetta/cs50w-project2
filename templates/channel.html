@@ -18,17 +18,8 @@
 
     </div>
     <div class="container-channel custom-window">
-            <div id="chat" class="list-group">
-                <a class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1" style="color:burlywood">{{ session.username }}</h6>
-                        <ul id="messages">
-                            <li class="mb-1">hola mark</li>
-                        </ul>
-                        <small>11:30</small>
-                    </div>
-                </a>
-                <div class="dropdown-divider"></div>
+            <div class="list-group">
+                <textarea id="chat" cols="30" rows="20" readonly>Padding:20</textarea>
             </div>
 
         <div id="users">
@@ -43,8 +34,9 @@
                 <div class="form-row">
                     <div class="form-group col-sm">
                         <div class="input-group">
-                            <textarea name="comment" id="comment" class="form-control" rows="1" required ></textarea>
-                        </div>
+                            <input id="comment" class="form-control" type="text" size="50">
+<!--                             <textarea name="comment" id="comment" class="form-control" rows="1" required ></textarea>
+ -->                        </div>
                     </div>
                     <div class="form-group col-sm-2">
                         <button id="send-button" class="btn btn-success" type="reset">Send</button>

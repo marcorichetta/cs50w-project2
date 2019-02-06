@@ -100,8 +100,8 @@ def enter_channel(channel):
 @socketio.on("joined", namespace='/')
 def joined(message):
     """ Send message to announce that user has entered the channel """
-    # TODO: Fix namespaces
-
+    
+    # Save current channel to join room.
     room = session.get('current_channel')
 
     join_room(room)
@@ -111,6 +111,8 @@ def joined(message):
         'msg': session.get('username') + ' has entered the channel.'}, 
         room=room)
 
+# TODO: Put a button to leave channel('room')
+ 
 """ @socketio.on("left", namespace='/')
 def left(message):
 
@@ -120,8 +122,12 @@ def left(message):
 
     emit('status', {'msg': session['username'] + ' has left the channel.'}, room=room) """
 
-@socketio.on("send message")
-def send_msg(data):
-    """ Receive message and broadcast to all the users connected """ 
-    msg = data['data']
-    emit("announce message", {"msg": msg}, broadcast=True)
+@socketio.on('send message')
+def send_msg(msg, timestamp):
+    """ Receive message with timestamp and broadcast on the channel """ 
+
+    emit('announce message', {
+        'user': session.get('username'),
+        'timestamp': timestamp,
+        'msg': msg}, 
+        broadcast=True)

@@ -16,32 +16,42 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // Send button should emit a "message sent" event
+        // Send button emits a "message sent" event
         document.querySelector('#send-button').addEventListener("click", () => {
-            const data = document.getElementById("comment").value;
-            socket.emit('send message', {'data': data});
             
-            // Clear textarea
+            // Save time in format HH:MM:SS
+            let timestamp = new Date;
+            timestamp = timestamp.toLocaleTimeString();
+
+            // Save user input
+            let msg = document.getElementById("comment").value;
+
+            socket.emit('send message', msg, timestamp);
+            
+            // Clear input
             document.getElementById("comment").value = '';
         });
     });
     
     // When user joins a channel, add a message and on users connected.
     socket.on('status', data => {
-        const li = document.createElement('li');
-        li.innerHTML = `${data.msg}`;
-        document.querySelector('#messages').append(li);
 
+        // Broadcast message of joined user.
+        let row = '<' + `${data.msg}` + '>'
+        document.querySelector('#chat').value += row + '\n';
+
+        // Adds the new user to the list of connected ones. 
         const newUser = document.createElement('li');
         newUser.innerHTML = `${data.userJoined}`;
         newUser.className = 'list-group-item';
         document.querySelector('#currentUsers').append(newUser);
     })
 
-    // When a message is announced, add it to the DOM
+    // When a message is announced, add it to the textarea.
     socket.on('announce message', data => {
-        const li = document.createElement('li');
-        li.innerHTML = `New message: ${data.msg}`;
-        document.querySelector('#messages').append(li)
+
+        // Format message
+        let row = '<' + `${data.timestamp}` + '> - ' + '[' + `${data.user}` + ']:  ' + `${data.msg}`
+        document.querySelector('#chat').value += row + '\n'
     })
 });
