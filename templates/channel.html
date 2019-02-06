@@ -20,15 +20,15 @@
             </div>
 
         <div id="users">
-                <h4>
-                    <span class="badge badge-primary">Users connected</span>
-                </h4>
-                <ul class="list-group">
-                    {% for user in users %}
-                    <li class="list-group-item">{{ user }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+            <h4>
+                <span class="badge badge-primary">Users connected</span>
+            </h4>
+            <ul class="list-group">
+                {% for user in users %}
+                <li class="list-group-item">{{ user }}</li>
+                {% endfor %}
+            </ul>
+        </div>
 
         <div id="message-box">
             <form method="POST" class="form-border">
@@ -55,6 +55,7 @@
         // Connect to websocket
         var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
+        // Send a joined event to backend
         socket.on('connect', () => {
             socket.emit('joined', {})
         })
