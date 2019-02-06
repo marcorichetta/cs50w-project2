@@ -99,16 +99,26 @@ def enter_channel(channel):
 
 @socketio.on("joined", namespace='/')
 def joined(message):
-    """ Broadcast a message to anounce that a user has joined the channel """
+    """ Send message to announce that user has entered the channel """
     # TODO: Fix namespaces
 
-    username = session['username']
-    room = session['current_channel']
-
-    print(room)
+    room = session.get('current_channel')
 
     join_room(room)
-    emit('status', {'msg': username + ' has entered the channel.'}, room=room)
+    
+    emit('status', {
+        'userJoined': session.get('username'),
+        'msg': session.get('username') + ' has entered the channel.'}, 
+        room=room)
+
+""" @socketio.on("left", namespace='/')
+def left(message):
+
+    room = session.get('current_channel')
+
+    leave_room(room)
+
+    emit('status', {'msg': session['username'] + ' has left the channel.'}, room=room) """
 
 @socketio.on("send message")
 def send_msg(data):

@@ -20,10 +20,12 @@
         <!-- Socket IO JS-->
         <script src="../static/socket.io.min.js"></script>
 
-        <script src="../static/index.js"></script>
-
+        {% block head %}
+        {% endblock %}
         
-        <title>Project 2: {% block title %}{% endblock %}</title>
+        <title>
+          Project 2: {% block title %}{% endblock %}
+        </title>
     </head>
 
     <body>
