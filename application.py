@@ -108,7 +108,8 @@ def joined(message):
     
     emit('status', {
         'userJoined': session.get('username'),
-        'msg': session.get('username') + ' has entered the channel.'}, 
+        'channel': room,
+        'msg': session.get('username') + ' has entered the channel'}, 
         room=room)
 
 # TODO: Put a button to leave channel('room')
@@ -120,7 +121,7 @@ def left(message):
 
     leave_room(room)
 
-    emit('status', {'msg': session['username'] + ' has left the channel.'}, room=room) """
+    emit('status', {'msg': session['username'] + ' has left the channel'}, room=room) """
 
 @socketio.on('send message')
 def send_msg(msg, timestamp):

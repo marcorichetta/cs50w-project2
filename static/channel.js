@@ -8,6 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         socket.emit('joined', {})
 
+        document.querySelector('#newChannel').addEventListener('click', () => {
+            try {
+                localStorage.removeItem('last_channel');
+            } finally {
+                console.log("hola");
+            }
+        });
+
         // 'Enter' key on textarea also sends a message
         // https://developer.mozilla.org/en-US/docs/Web/Events/keydown
         document.querySelector('#comment').addEventListener("keydown", event => {
@@ -40,6 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let row = '<' + `${data.msg}` + '>'
         document.querySelector('#chat').value += row + '\n';
 
+        // Save user current channel on localStorage
+        localStorage.setItem('last_channel', data.channel)
     })
 
     // When a message is announced, add it to the textarea.
