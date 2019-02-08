@@ -18,23 +18,16 @@
 
     </div>
     <div class="container-channel custom-window">
-            <div class="list-group">
+            <div id="chat-box" class="list-group">
                 <textarea id="chat" cols="30" rows="20" readonly></textarea>
             </div>
-
-        <div id="users">
-            <h4>
-                <span class="badge badge-primary">Users connected</span>
-            </h4>
-            <ul id="currentUsers" class="list-group"></ul>
-        </div>
 
         <div id="message-box">
             <div class="form-border">
                 <div class="form-row">
                     <div class="form-group col-sm">
                         <div class="input-group">
-                            <input id="comment" class="form-control" size="50">
+                            <input id="comment" class="form-control" size="50" autocomplete="off" autofocus>
                         </div>
                     </div>
                     <div class="form-group col-sm-2">
@@ -44,7 +37,7 @@
             </div>
         </div>
         <div id="file-selector">
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            <input type="file" accept="image/*" class="form-control-file" id="exampleFormControlFile1">
         </div>
     </div>
 

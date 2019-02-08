@@ -40,11 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let row = '<' + `${data.msg}` + '>'
         document.querySelector('#chat').value += row + '\n';
 
-        // Adds the new user to the list of connected ones. 
-        const newUser = document.createElement('li');
-        newUser.innerHTML = `${data.userJoined}`;
-        newUser.className = 'list-group-item';
-        document.querySelector('#currentUsers').append(newUser);
     })
 
     // When a message is announced, add it to the textarea.

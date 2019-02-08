@@ -38,8 +38,8 @@ main .form-control
 
 .container-channel {
     display: grid;
-    grid-template-columns: auto 250px;
-    grid-template-rows: 25rem 100px;
+    grid-template-columns: auto;
+    grid-template-rows: 20rem 100px;
 }
 
 /* ID */
