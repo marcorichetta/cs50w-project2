@@ -13,6 +13,8 @@ main img
     max-width: 100%;
 }
 
+/* Classes */
+
 main .form-control
 {
     /* center form controls */
@@ -40,6 +42,7 @@ main .form-control
     grid-template-rows: 25rem 100px;
 }
 
+/* ID */
 
 #message-box, #file-selector {
     align-self: center;
@@ -47,4 +50,8 @@ main .form-control
 
 #message-box {
     margin: 30px 20px 10px 30px;
+}
+
+#chat {
+    padding: 20px;
 }

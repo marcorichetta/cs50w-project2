@@ -124,10 +124,13 @@ def left(message):
 
 @socketio.on('send message')
 def send_msg(msg, timestamp):
-    """ Receive message with timestamp and broadcast on the channel """ 
+    """ Receive message with timestamp and broadcast on the channel """
+
+    # Broadcast only to users on the same channel.
+    room = session.get('current_channel')
 
     emit('announce message', {
         'user': session.get('username'),
         'timestamp': timestamp,
         'msg': msg}, 
-        broadcast=True)
+        room=room)

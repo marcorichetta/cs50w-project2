@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 'Enter' key on textarea also sends a message
         // https://developer.mozilla.org/en-US/docs/Web/Events/keydown
         document.querySelector('#comment').addEventListener("keydown", event => {
-            if (event.code == "Enter") {
+            if (event.key == "Enter") {
                 document.getElementById("send-button").click();
             }
         });
