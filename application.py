@@ -95,7 +95,7 @@ def enter_channel(channel):
         
         return redirect("/")
     else:
-        return render_template("channel.html", channels= channelsCreated, users=usersLogged)
+        return render_template("channel.html", channels= channelsCreated)
 
 @socketio.on("joined", namespace='/')
 def joined(message):

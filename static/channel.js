@@ -8,12 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         socket.emit('joined', {})
 
+        // Forget the last channel when goes to '+ Channel'
         document.querySelector('#newChannel').addEventListener('click', () => {
-            try {
-                localStorage.removeItem('last_channel');
-            } finally {
-                console.log("hola");
-            }
+            localStorage.removeItem('last_channel');
         });
 
         // 'Enter' key on textarea also sends a message
