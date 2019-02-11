@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // When connected, configure button
     socket.on('connect', () => {
 
+        // Notify the server user has joined
         socket.emit('joined', {})
 
         // Forget user's last channel when clicked on '+ Channel'
@@ -13,10 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('last_channel');
         });
 
+        // When user leaves channel redirect to '/'
+        document.querySelector('#leave').addEventListener('click', () => {
+
+            // Notify the server user has left
+            socket.emit('left');
+
+            localStorage.removeItem('last_channel');
+            window.location.replace('/');
+        })
+
         // Forget user's last channel when logged out
         document.querySelector('#logout').addEventListener('click', () => {
             localStorage.removeItem('last_channel');
-        })
+        });
 
         // 'Enter' key on textarea also sends a message
         // https://developer.mozilla.org/en-US/docs/Web/Events/keydown
@@ -61,4 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let row = '<' + `${data.timestamp}` + '> - ' + '[' + `${data.user}` + ']:  ' + `${data.msg}`
         document.querySelector('#chat').value += row + '\n'
     })
+
+    
 });
