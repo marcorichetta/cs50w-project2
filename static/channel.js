@@ -8,10 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         socket.emit('joined', {})
 
-        // Forget the last channel when goes to '+ Channel'
+        // Forget user's last channel when clicked on '+ Channel'
         document.querySelector('#newChannel').addEventListener('click', () => {
             localStorage.removeItem('last_channel');
         });
+
+        // Forget user's last channel when logged out
+        document.querySelector('#logout').addEventListener('click', () => {
+            localStorage.removeItem('last_channel');
+        })
 
         // 'Enter' key on textarea also sends a message
         // https://developer.mozilla.org/en-US/docs/Web/Events/keydown

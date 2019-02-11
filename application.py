@@ -15,6 +15,8 @@ channelsCreated = []
 # Keep track of users logged (Check for username)
 usersLogged = []
 
+channelMessages = []
+
 @app.route("/")
 @login_required
 def index():
@@ -32,6 +34,9 @@ def signin():
     username = request.form.get("username")
     
     if request.method == "POST":
+
+        if len(username) < 1 or username is '':
+            return render_template("error.html", message="username can't be empty.")
 
         if username in usersLogged:
             return render_template("error.html", message="that username already exists!")                   
@@ -95,7 +100,7 @@ def enter_channel(channel):
         
         return redirect("/")
     else:
-        return render_template("channel.html", channels= channelsCreated)
+        return render_template("channel.html", channels= channelsCreated, messages=channelMessages)
 
 @socketio.on("joined", namespace='/')
 def joined(message):
@@ -129,6 +134,10 @@ def send_msg(msg, timestamp):
 
     # Broadcast only to users on the same channel.
     room = session.get('current_channel')
+
+    channelMessages.append([session.get('username'), timestamp, msg])
+
+    print(channelMessages)
 
     emit('announce message', {
         'user': session.get('username'),
