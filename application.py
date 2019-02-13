@@ -15,7 +15,8 @@ channelsCreated = []
 # Keep track of users logged (Check for username)
 usersLogged = []
 
-channelMessages = []
+# Instanciate a dict
+channelsMessages = dict()
 
 @app.route("/")
 @login_required
@@ -82,6 +83,10 @@ def create():
         # Add channel to global list of channels
         channelsCreated.append(newChannel)
 
+        # Add channel to global list of channels
+        # https://stackoverflow.com/questions/1024847/add-new-keys-to-a-dictionary
+        channelsMessages[newChannel] = []
+
         return redirect("/channels/" + newChannel)
     
     else:
@@ -100,10 +105,10 @@ def enter_channel(channel):
         
         return redirect("/")
     else:
-        return render_template("channel.html", channels= channelsCreated, messages=channelMessages)
+        return render_template("channel.html", channels= channelsCreated, messages=channelsMessages[channel])
 
 @socketio.on("joined", namespace='/')
-def joined(message):
+def joined():
     """ Send message to announce that user has entered the channel """
     
     # Save current channel to join room.
@@ -117,10 +122,8 @@ def joined(message):
         'msg': session.get('username') + ' has entered the channel'}, 
         room=room)
 
-# TODO: Put a button to leave channel('room')
- 
 @socketio.on("left", namespace='/')
-def left(message):
+def left():
     """ Send message to announce that user has left the channel """
 
     room = session.get('current_channel')
@@ -138,9 +141,9 @@ def send_msg(msg, timestamp):
     # Broadcast only to users on the same channel.
     room = session.get('current_channel')
 
-    channelMessages.append([session.get('username'), timestamp, msg])
+    # TODO: Save 100 messages and pass them when a user joins a specific channel.
 
-    print(channelMessages)
+    channelsMessages[room].append([timestamp, session.get('username'), msg])
 
     emit('announce message', {
         'user': session.get('username'),

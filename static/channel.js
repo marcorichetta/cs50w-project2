@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     socket.on('connect', () => {
 
         // Notify the server user has joined
-        socket.emit('joined', {})
+        socket.emit('joined');
 
         // Forget user's last channel when clicked on '+ Channel'
         document.querySelector('#newChannel').addEventListener('click', () => {

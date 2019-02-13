@@ -19,7 +19,13 @@
 </div>
 <div class="container-channel custom-window">
     <div id="chat-box" class="list-group">
-        <textarea id="chat" cols="30" rows="20" readonly></textarea>
+        <!-- http://jinja.pocoo.org/docs/2.10/templates/#whitespace-control -->
+        <textarea id="chat" cols="30" rows="20" readonly>
+            {%- for message in messages -%}
+                {{ message }}{{'\n'}}
+            {%- endfor -%}
+            {{ '----- These are old messages -----' }}{{- '\n' -}}
+        </textarea>
     </div>
 
     <div id="message-box">
