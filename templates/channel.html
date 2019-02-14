@@ -19,12 +19,19 @@
 </div>
 <div class="container-channel custom-window">
     <div id="chat-box" class="list-group">
-        <!-- http://jinja.pocoo.org/docs/2.10/templates/#whitespace-control -->
+        {#
+            http://jinja.pocoo.org/docs/2.10/templates/#whitespace-control
+            
+            Minus(-) used to strip all the whitespace 
+            Only if there are messages, render it.
+        #}
         <textarea id="chat" cols="30" rows="20" readonly>
-            {%- for message in messages -%}
-                {{ message }}{{'\n'}}
-            {%- endfor -%}
-            {{ '----- These are old messages -----' }}{{- '\n' -}}
+            {%- if messages -%} 
+                {%- for message in messages -%}
+                    <{{ message[0] }}> - [{{ message[1] }}]: {{ message [2] }} {{'\n'}}
+                {%- endfor -%}
+                {{ '----- These are old messages -----' }}{{- '\n' -}}
+            {%- endif -%}
         </textarea>
     </div>
 

@@ -1,5 +1,7 @@
 import os
 
+from collections import deque
+
 from flask import Flask, render_template, session, request, redirect
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
 
@@ -83,9 +85,10 @@ def create():
         # Add channel to global list of channels
         channelsCreated.append(newChannel)
 
-        # Add channel to global list of channels
+        # Add channel to global dict of channels with messages
+        # Every channel is a deque to use popleft() method 
         # https://stackoverflow.com/questions/1024847/add-new-keys-to-a-dictionary
-        channelsMessages[newChannel] = []
+        channelsMessages[newChannel] = deque()
 
         return redirect("/channels/" + newChannel)
     
@@ -141,7 +144,11 @@ def send_msg(msg, timestamp):
     # Broadcast only to users on the same channel.
     room = session.get('current_channel')
 
-    # TODO: Save 100 messages and pass them when a user joins a specific channel.
+    # Save 100 messages and pass them when a user joins a specific channel.
+
+    if len(channelsMessages[room]) > 100:
+        # Pop the oldest message
+        channelsMessages[room].popleft()
 
     channelsMessages[room].append([timestamp, session.get('username'), msg])
 
