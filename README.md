@@ -6,7 +6,7 @@ Web Programming with Python and JavaScript
 ![](https://i.imgur.com/veUhsDb.png)
 
 ### Home
-![](https://i.imgur.com/iZhNWMP)
+![](https://i.imgur.com/iZhNWMP.png)
 
 ### Chat
 ![](https://i.imgur.com/iKhYyzA.png)
