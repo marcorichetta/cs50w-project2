@@ -1,16 +1,17 @@
-# Project 2
+# CS50W Project 2
 
-Web Programming with Python and JavaScript
+## Web Programming with Python and JavaScript
+### https://courses.edx.org/courses/course-v1:HarvardX+CS50W+Web/course/
 
-Login
+## Login
 
 ![](https://i.imgur.com/veUhsDb.png)
 
-Home
+## Home
 
 ![](https://i.imgur.com/masC7fx.png)
 
-Chat
+## Chat
 
 ![](https://i.imgur.com/iKhYyzA.png)
 
