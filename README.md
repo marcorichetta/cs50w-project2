@@ -3,16 +3,13 @@
 ## Web Programming with Python and JavaScript
 ### https://courses.edx.org/courses/course-v1:HarvardX+CS50W+Web/course/
 
-## Login
-
+### Login
 ![](https://i.imgur.com/veUhsDb.png)
 
-## Home
+### Home
+![](https://i.imgur.com/iZhNWMP.png)
 
-![](https://i.imgur.com/masC7fx.png)
-
-## Chat
-
+### Chat
 ![](https://i.imgur.com/iKhYyzA.png)
 
 ## Usage
@@ -37,4 +34,9 @@ $ source myvirtualenv/bin/activate (Linux)
 
 # Install all dependencies
 $ pip install -r requirements.txt
+
+# Run
+$ flask run
+
+# Go to 127.0.0.1:5000 on your web browser.
 ```
