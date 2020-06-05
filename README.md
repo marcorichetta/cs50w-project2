@@ -40,3 +40,35 @@ $ flask run
 
 # Go to 127.0.0.1:5000 on your web browser.
 ```
+
+## :page_facing_up: Messages storing example
+```python
+In [1]: channellsMessages = dict()                                                                                                                    
+
+In [2]: msg1 = { 
+   ...: 'message': 'hi',  
+   ...: 'user': 'marco',  
+   ...: 'time': '12/23/34 00:00' 
+   ...: }                                                                                                                                             
+
+In [3]: channellsMessages['room1'] = [msg1]                                                                                                           
+
+In [4]: channellsMessages                                                                                                                             
+Out[4]: {'room1': [{'message': 'hi', 'user': 'marco', 'time': '12/23/34 00:00'}]}
+
+In [5]: msg2 = { 
+   ...: 'message': 'Hello',  
+   ...: 'user': 'rick',  
+   ...: 'time': '12/23/34 10:00' 
+   ...: }                                                                                                                                             
+
+In [6]: channellsMessages['room1']                                                                                                                    
+Out[6]: [{'message': 'hi', 'user': 'marco', 'time': '12/23/34 00:00'}]
+
+In [7]: channellsMessages['room1'].append(msg2)                                                                                                       
+
+In [8]: channellsMessages['room1']                                                                                                                    
+Out[8]: [{'message': 'hi', 'user': 'marco', 'time': '12/23/34 00:00'},
+ {'message': 'Hello', 'user': 'rick', 'time': '12/23/34 10:00'}]
+
+```
